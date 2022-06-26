@@ -1,7 +1,7 @@
 from unicodedata import name
 
 
-class Month
+class Month(object)
 
 def __init__(self, name, housing, monthly_allowance, groceries, utilities, actual_spending = 0, prev_month = None )
 
