@@ -1,6 +1,7 @@
 from annual_budget import Annual_Budget
 from monthly_budget import Month
 
+
 def new_budget():
     out_file = input("Hello, please choose a name for your new budget: ")
     if out_file[-4:] != ".txt":

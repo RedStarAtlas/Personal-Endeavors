@@ -2,7 +2,8 @@ from monthly_budget import Month
 
 class Annual_Budget(object):
 
-    def __init__(self, income = 0, groceries = 0, utilities = 0, housing = 0, num_months =1):
+
+    def __init__(self, income = 0, groceries = 0,utilities = 0, housing = 0, num_months = 1):
         self.income = income
         self.month_list = []
         self.groceries = groceries

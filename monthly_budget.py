@@ -1,54 +1,51 @@
-from unicodedata import name
+class Month(object):
+
+    def __init__(self,name,housing, monthly_allowance,groceries,utilities, actual_spending = 0, add_expense = 0,prev_month = None):
 
 
-class Month(object)
+        #amount of spillover from previous month
+        if prev_month == None:
+            self.spillover = 0
+        else:
+            self.spillover = prev_month.calc_spillover()
 
-def __init__(self, name, housing, monthly_allowance, groceries, utilities, actual_spending = 0, prev_month = None )
+        self.housing = housing
+        self.groceries = groceries
+        #additional expenses
+        self.add_expense = add_expense
+        self.utilities = utilities
+        self.monthly_allowance = monthly_allowance
+        self.spending_allowance = self.calc_spending_income()
+        #how much free spending was actually spent
+        self.actual_spending = actual_spending
+        self.name = name
+        self.prev_month = prev_month
 
-    #previous month spillover
-    if prev_month == None:
-        self.spillover = 0
-    else:
-        self.spillover = prev_month.calc_spillover()
 
-    self.housing = housing
-    self.groceries = groceries
+    def add_actual_spending(self):
 
-    #additional expenses
-    self.add_expense = add_expense
-    self.utilities = utilities
-    self.monthly_allowance = monthly_allowance
-    self.spending_allowance = self.calc_spending_income()
+        x = input("Okay, how much did you actually spend this month: ")
+        if x.isnumeric() and float(x) >= 0:
+            self.actual_spending = float(x)
+            print("$" + x, "of actual spending recorded")
+        else:
+            print("Invalid amount type, sorry")
 
-    #actual misc spending spent
-    self.actual_spending = actual_spending
-    self.name = name
-    self.prev_month = prev_month
+    #accounts for miscellanous expenses made
+    def additional_expenses(self):
+        while not expense.isnumeric():
+            expense = input("Add a valid expense amount, only digits or integers")
 
-def add_actual_spending(self):
+        expense = float(expense)
+        self.add_expense += expense
 
-    x = input("How much was actually spent this month?: ")
-    if x.isnumeric() and float(x) >= 0:
-        self.actual_spending = float(x)
-        print("$" + x, "of actual spending recorded")
-    else:
-        print("Invalid amount type, please try again")
+        while ex.lower() != "none":
+            ex = input("Add another expense, type 'none' if finished: ")
+            while not ex.isnumeric() or float(ex) < 0 or not ex.lower() == "none":
+                ex = input("Please input a valid number: ")
 
-#accounts for miscellanous expenses made
-def additional_expenses(self):
-    while not expense.isnumeric():
-        expense = input("Add a valid expense amount; only digits or integers")
-
-    expense = float(expense)
-    self.add_expense += expense
-
-    while ex.lower() != "none":
-        ex = input("Add another expense, type 'none' if finished: ")
-        while not ex.isnumeric() or float(ex) < 0 or not ex.lower() == "none":
-            ex = input("Please input a valid number: ")
-
-        ex = float(ex)
-        self.add_expense += ex
+            ex = float(ex)
+            self.add_expense += ex
 
     def add_income(self):
         amount = input("Enter amount: ")
@@ -141,6 +138,12 @@ def additional_expenses(self):
 
             else:
                 print("Invalid pick, try again")
+
+
+
+
+
+
 
     #print income, any earnings, expenses
     def print_statement(self):
