@@ -1,6 +1,21 @@
 class Month(object):
 
-    def __init__(self,name,housing, monthly_allowance,groceries,utilities, actual_spending = 0, add_expense = 0,prev_month = None):
+    def __init__(
+        self,
+        name,
+        housing, 
+        groceries,
+        utilities,
+        phone,
+        gas,
+        loans,
+        subscriptions, 
+        savings,
+        investments,
+        monthly_allowance,
+        actual_spending = 0, 
+        add_expense = 0,
+        prev_month = None):
 
 
         #amount of spillover from previous month
@@ -9,11 +24,18 @@ class Month(object):
         else:
             self.spillover = prev_month.calc_spillover()
 
+        #necessities
         self.housing = housing
         self.groceries = groceries
+        self.utilities = utilities
+        self.phone = phone
+        self.gas = gas
+        self.loans = loans
         #additional expenses
         self.add_expense = add_expense
-        self.utilities = utilities
+        self.subscriptions = subscriptions
+        self.savings = savings
+        self.investments = investments
         self.monthly_allowance = monthly_allowance
         self.spending_allowance = self.calc_spending_income()
         #how much free spending was actually spent
@@ -24,12 +46,12 @@ class Month(object):
 
     def add_actual_spending(self):
 
-        x = input("Okay, how much did you actually spend this month: ")
+        x = input("How much was actually spend this month: ")
         if x.isnumeric() and float(x) >= 0:
             self.actual_spending = float(x)
             print("$" + x, "of actual spending recorded")
         else:
-            print("Invalid amount type, sorry")
+            print("Invalid amount type, please try again")
 
     #accounts for miscellanous expenses made
     def additional_expenses(self):
@@ -79,8 +101,11 @@ class Month(object):
             print("1: Housing")
             print("2: Groceries")
             print("3: Utilities")
-            print("4: Additional Expenses")
-            print("5: Quit to monthly menu")
+            print("4: Phone")
+            print("5: Gas")
+            print("6: loans")
+            print("7: Additional Expenses")
+            print("8: Quit to monthly menu")
             where = input("Enter a number: ")
 
             num_change = input("What would you like to edit expense amount to:  ", "\n")

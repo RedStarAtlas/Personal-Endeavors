@@ -3,11 +3,13 @@ from monthly_budget import Month
 
 
 def new_budget():
-    out_file = input("Hello, please choose a name for your new budget: ")
+    out_file = input("What is the name of your new budget?: ")
     if out_file[-4:] != ".txt":
         out_file += ".txt"
-
+   
+    print("             ")
     print("""Let's set up some default estimated values for some continuous expenses. You will be able to adjust these or change the specific monthly expenses later""")
+   print("             ")
     print("Type '0', if it does not apply")
     print("")
 
@@ -94,10 +96,14 @@ def continue_budget():
     return annual_lst
 
 def menu():
-    print("What would you like to do?")
+    print("Please choose from the following options: ")
+    print("             ")   
+    print("-----------------------------------------")
     print("1: Create a new budget")
     print("2: Continue an existing budget")
-    pick = input("Pick: ")
+    print("-----------------------------------------")
+    print("             ")
+    pick = input("Enter: ")
 
     while pick != "1" and pick != "2":
         pick = input("Please enter a valid number: ")
