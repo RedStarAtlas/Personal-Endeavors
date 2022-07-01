@@ -94,7 +94,133 @@ class BiWeekly(object):
 
         return spending_income - self.actual_spent
 
-        
+    def edit_expenses(self):
+        where = 0
+        while where != "0":
+            print("Where would you like to change expenses?")
+            print("1: Housing")
+            print("2: Utilities")
+            print("3: Groceries")
+            print("4: Phone")
+            print("5: Gas")
+            print("6: loans")
+            print("7: subscriptions")
+            print("8: savings")
+            print("9: investments")
+            print("10: Additional Expenses")
+            print("11: Quit to monthly menu")
+            where = input("Enter a number: ")
 
+            num_change = input("What would you like to edit expense amount to: ", "\n")
+            num_change = float(num_change)
+
+            if int(where) in range(1,10):
+                if where == "1":
+                    self.housing = num_change
+                elif where == "2":
+                    self.utilities = num_change
+                elif where == "3":
+                    self.groceries == num_change
+                elif where == "4":
+                    self.phone == num_change
+                elif where == "5":
+                    self.gas == num_change
+                elif where == "6":
+                    self.loans == num_change
+                elif where == "7":
+                    self.subscriptions == num_change
+                elif where == "8":
+                    self.savings == num_change
+                elif where == "9":
+                    self.investments == num_change
+                elif where == "10":
+                    self.additional_expenses(num_change)
+                else:
+                    print("Sorry, invalid option. Please choose 1-10")
+
+    def(biweekly_menu)(self):
+        pick = 0
+        while pick != 8:
+            print('-----------------------------')
+            print('')
+            print('1: Look at your BiWeekly Statement')
+            print('2: Add your actual amount spent for this pay period')
+            print('3: Calculate leftover money to the next pay period')
+            print('4: Add additional, unaccounted for expenses')
+            print('5: Add extra income to this pay period')
+            print('6: Change expense amounts for one or more of the categories')
+            print('7: Calculate free spending money')
+            print('8: Quit to annual budget menu')
+            pick = input("Select an option: ")
+            print("")
+            if pick.isnumeric() and int(pick) in range(1,9):
+                pick = int(pick)
+
+                if pick == 1:
+                    self.print_statement()
+                elif pick == 2:
+                    self.add_actual_spending()
+                elif pick == 3:
+                    self.calc_leftover()
+                    print("Next pay period's spillover: " + str(format(self.calc_leftover(), ",.2f")), "\n")
+                elif pick == 4:
+                    self.additional_expenses()
+                elif pick == 5:
+                    self.add_income()
+                elif pick == 6:
+                    self.edit_expenses()
+                elif pick == 7:
+                    sp_income = self.calc_spending_income()
+                    print("Spending Money for this pay period: $", str(format(sp_income, ",.2f")))
+
+            else:
+                print("Invalid pick, please try again")
+
+    #prints the income, earnings, and expenses
+    def print_statement(self):
+        print(self.name + "'s " + "BiWeekly Statement:", "\n")
+        print("Starting Balance")
+        print("-----------------------------")
+        print("BiWeekly Allowance: $" + str(format(self.biweekly_allowance, ",.2f")))
+        print("Last pay period's leftover: $" + str(format(self.leftover, ",.2f")))
+        print("------------------------")
+        assets = self.biweekly_allowance + self.leftover
+        print("Total assets: $" + str(format(assets, ",.2f")), "\n")
+
+        print("Expenses: ")
+        print("Housing: $" + str(format(self.housing, ",.2f")))
+        print("Groceries: $" + str(format(self.groceries, ",.2f")))
+        print("Utilities: $" + str(format(self.utilities, ",.2f")))
+        print("Gas: $" + str(format(self.gas, ",.2f")))
+        print("Phone: $" + str(format(self.phone, ",.2f")))
+        print("Loans: $" + str(format(self.loans, ",.2f")))
+        print("Subscriptions: $" + str(format(self.subscriptions, ",.2f")))
+        print("Savings: $" + str(format(self.savings, ",.2f")))
+        print("Investments: $" + str(format(self.investments, ",.2f")))
+        print("BiWeekly Allowance: $" + str(format(self.biweekly_allowance, ",.2f")))
+        print("Additional Spending: $"+ str(format(self.add_expense, ",.2f")))
+
+        expenses = self.housing + self.groceries + self.utilities + 
+                   self.gas + self.phone + self.loans + self.subscriptions + self.savings 
+                   self.investments + self.biweekly_allowance + self.add_expense
+
+        print("------------------------")
+        print("Total Expenses: $" + str(format(expenses, ".2f")), "\n")
+        print("Spending Money: $"+str(format(self.calc_spending_income(), ".2f")))
+        if self.actual_spending != 0:
+            print("Actual amount spent: $" + str(self.actual_spending))
+            print("Next pay period's leftover: $" + str(format(self.calc_leftover(), ".2f")))
+
+        print("End of BiWeekly Statement", "\n")
+
+def main():
+    x= Month("September",12,32,43,32)
+
+    spending  = x.calc_spending_income()
+    print(str(spending))
+    print(type(spending))
+
+    print(x.actual_spending)
+    print(type(x.actual_spending))
 
     
