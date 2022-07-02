@@ -59,9 +59,9 @@ class Annual_Budget(object):
 
         #TODO: fix parameters here
 
-            month  = Month(name, housing, allowance, groceries, utilities, gas, phone, 0, 0, prev_month)
+            month  = BiWeekly(name, housing, allowance, groceries, utilities, gas, phone, 0, 0, prev_month)
         else:
-            month = Month(name, housing, allowance, groceries, utilities, gas, phone)
+            month = BiWeekly(name, housing, allowance, groceries, utilities, gas, phone)
 
         self.month_list.append(month)
 

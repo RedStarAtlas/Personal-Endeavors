@@ -1,5 +1,5 @@
-from annual_budget import Annual_Budget
-from biweekly_budget import import BiWeekly
+from my_annual_budget import Annual_Budget
+from my_biweekly_budget import BiWeekly
 
 def new_budget():
     out_file = input("What is the name of your new budget?: ")
