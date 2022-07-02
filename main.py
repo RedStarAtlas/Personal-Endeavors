@@ -1,15 +1,14 @@
-from my_annual_budget import Annual_Budget
-from my_biweekly_budget import BiWeekly
+from annual_budget import Annual_Budget
+from biweekly_budget import BiWeekly
 
 def new_budget():
     out_file = input("What is the name of your new budget?: ")
     if out_file[-4:] != ".txt":
         out_file += ".txt"
 
-   
-    print("             ")
+    print("")
     print("""Let's set up some default estimated values for some continuous expenses. You will be able to adjust these or change the specific expenses later""")
-   print("             ")
+    print("             ")
     print("Type '0', if it does not apply")
     print("")
 
@@ -24,8 +23,7 @@ def new_budget():
     subscriptions = float(input("Expected monthly cost of subscriptions:"))
     num_months = float(input("Number of months you would like this budget to spread Annual income: "))
 
-    annual_budget = Annual_Budget(income, housing, groceries, utilities, gas, phone, loans,
-                                subscriptions,  num_months)
+    annual_budget = Annual_Budget(income, housing, groceries, utilities, gas, phone, loans, subscriptions, num_months)
 
     if not annual_budget.month_list:
         print("Please create a month to begin")
@@ -82,19 +80,16 @@ def continue_budget():
 
 
         if not annual_budget.month_list:
-            month = Month(new_line[0], float(new_line[1]), float(new_line[2]), float(new_line[3]),float(new_line[4]), float(new_line[5]), float(new_line[6]))
+            month = BiWeekly(new_line[0], float(new_line[1]), float(new_line[2]), float(new_line[3]),float(new_line[4]), float(new_line[5]), float(new_line[6]))
 
         else:
             prev_month = annual_budget.month_list[-1]
 
-            month = Month(new_line[0], float(new_line[1]), float(new_line[2]), float(new_line[3]),float(new_line[4]), float(new_line[5]), float(new_line[6]), prev_month)
+            month = BiWeekly(new_line[0], float(new_line[1]), float(new_line[2]), float(new_line[3]),float(new_line[4]), float(new_line[5]), float(new_line[6]), prev_month)
 
         annual_budget.month_list.append(month)
 
-
     budget_data.close()
-
-
 
     if not annual_budget.month_list:
         print("Please create a month to begin")
@@ -103,9 +98,9 @@ def continue_budget():
 
     annual_budget.annual_menu()
 
-    annual_lst = [annual_budget,in_file]
+    annual_list = [annual_budget, in_file]
 
-    return annual_lst
+    return annual_list
 
 def menu():
     print("Please choose from the following options: ")

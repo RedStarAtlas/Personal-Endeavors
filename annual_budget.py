@@ -1,4 +1,4 @@
-from my_biweekly_budget import BiWeekly
+from biweekly_budget import BiWeekly
 
 class Annual_Budget(object):
 
